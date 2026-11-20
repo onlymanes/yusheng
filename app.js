@@ -19,10 +19,10 @@
       heroLine: '“倘若源自心灵，不过诚实而已。”',
       heroNote: '——宝哥',
       choiceLabel: '先选答案库：',
-      choiceNote100: '100 条经典歌词',
-      choiceNote1000: '1000 条：歌词 944 条 + 雨生亲笔文字 56 条',
-      choiceNoteLoading: '1000 答案库加载中……',
-      choiceNoteFail: '1000 答案库没加载出来，刷新一下页面再试。',
+      choiceNote100: '100条经典歌词',
+      choiceNote1000: '1000条：歌词944条 + 雨生亲笔文字56条',
+      choiceNoteLoading: '1000答案库加载中……',
+      choiceNoteFail: '1000答案库没加载出来，刷新一下页面再试。',
       askLabel: '你的问题',
       questionPlaceholder: '宝友，你想问什么？比如：我该怎么办，喜欢他，却不敢说',
       questionHint: '先写下你的问题，再掷骰子。',
@@ -38,10 +38,10 @@
       againBtn: '再问一次',
       answerSuffix: '号答案',
       footer1: '这里是宝友的答案之书：写下你的问题，掷一枚骰子，听宝哥用张雨生自己的话作答。',
-      footer2: '答案库两种选择：100 条经典歌词，或 1000 条（歌词 944 条 + 雨生亲笔文字 56 条）',
-      footer3Text: '雨生亲笔文字已收入 1000 答案版',
-      footer4: '整部作品由宝友 Ellen 提议，宝友群集思广益，Muse AI 生成。',
-      footer5: '头像：宝友「哈哈」手绘作品，Muse AI 涂色。'
+      footer2: '答案库两种选择：100条经典歌词，或1000条（歌词944条 + 雨生亲笔文字56条）',
+      footer3Text: '雨生亲笔文字已收入1000答案版',
+      footer4: '整部作品由宝友Ellen提议，宝友群集思广益，Muse AI生成。',
+      footer5: '头像：宝友「哈哈」手绘作品，Muse AI涂色。'
     },
     tw: {
       docTitle: '張雨生答案之書 — 寶友問，寶哥答',
@@ -50,10 +50,10 @@
       heroLine: '“倘若源自心靈，不過誠實而已。”',
       heroNote: '——寶哥',
       choiceLabel: '先選答案庫：',
-      choiceNote100: '100 條經典歌詞',
-      choiceNote1000: '1000 條：歌詞 944 條 + 雨生親筆文字 56 條',
-      choiceNoteLoading: '1000 答案庫加載中……',
-      choiceNoteFail: '1000 答案庫沒加載出來，刷新一下頁面再試。',
+      choiceNote100: '100條經典歌詞',
+      choiceNote1000: '1000條：歌詞944條 + 雨生親筆文字56條',
+      choiceNoteLoading: '1000答案庫加載中……',
+      choiceNoteFail: '1000答案庫沒加載出來，刷新一下頁面再試。',
       askLabel: '你的問題',
       questionPlaceholder: '寶友，你想問什麼？比如：我該怎麼辦，喜歡他，卻不敢說',
       questionHint: '先寫下你的問題，再擲骰子。',
@@ -69,10 +69,10 @@
       againBtn: '再問一次',
       answerSuffix: '號答案',
       footer1: '這裡是寶友的答案之書：寫下你的問題，擲一枚骰子，聽寶哥用張雨生自己的話作答。',
-      footer2: '答案庫兩種選擇：100 條經典歌詞，或 1000 條（歌詞 944 條 + 雨生親筆文字 56 條）',
-      footer3Text: '雨生親筆文字已收入 1000 答案版',
-      footer4: '整部作品由寶友 Ellen 提議，寶友群集思廣益，Muse AI 生成。',
-      footer5: '頭像：寶友「哈哈」手繪作品，Muse AI 塗色。'
+      footer2: '答案庫兩種選擇：100條經典歌詞，或1000條（歌詞944條 + 雨生親筆文字56條）',
+      footer3Text: '雨生親筆文字已收入1000答案版',
+      footer4: '整部作品由寶友Ellen提議，寶友群集思廣益，Muse AI生成。',
+      footer5: '頭像：寶友「哈哈」手繪作品，Muse AI塗色。'
     }
   };
 
@@ -181,7 +181,7 @@
     var item = answers[(n - 1) % answers.length];
     var src = item.source || ('《' + item.song + '》/《' + item.album + '》');
     answerText.textContent = item.text;
-    answerSource.textContent = '——' + src + ' · 第 ' + n + ' ' + S().answerSuffix;
+    answerSource.textContent = '——' + src + ' · 第' + n + S().answerSuffix;
   }
 
   function setMode(n) {

@@ -1,5 +1,5 @@
-// 张雨生答案之书 V0
-// 流程：输入问题 -> 掷骰子（六面骰转动）-> 点停 -> 出 1-100 的号 -> 取对应答案
+// 张雨生答案之书
+// 流程：选答案库（100 / 1000）-> 输入问题 -> 掷骰子（六面骰转动）-> 点停 -> 出对应号 -> 取对应答案
 (function () {
   var FACES = {
     1: [4],
@@ -24,8 +24,14 @@
   var answerText = document.getElementById('answerText');
   var answerSource = document.getElementById('answerSource');
   var againBtn = document.getElementById('againBtn');
+  var mode100Btn = document.getElementById('mode100Btn');
+  var mode1000Btn = document.getElementById('mode1000Btn');
+  var choiceNote = document.getElementById('choiceNote');
 
   var pips = Array.prototype.slice.call(dieEl.querySelectorAll('.pip'));
+  var mode = 100;
+  var pool100 = null;
+  var pool1000 = null;
   var answers = null;
   var rollTimer = null;
   var numberTimer = null;
@@ -41,9 +47,54 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function resetFlow() {
+    answerSection.hidden = true;
+    diceArea.hidden = true;
+    numberLine.hidden = true;
+    rollBtn.disabled = false;
+  }
+
+  function setMode(n) {
+    if (n === mode && answers) return;
+    if (n === 1000 && !pool1000) {
+      mode100Btn.disabled = true;
+      mode1000Btn.disabled = true;
+      choiceNote.textContent = '1000 答案库加载中……';
+      fetch('answers-1000.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          pool1000 = data;
+          applyMode(1000);
+        })
+        .catch(function () {
+          choiceNote.textContent = '1000 答案库没加载出来，刷新一下页面再试。';
+          mode100Btn.disabled = false;
+          mode1000Btn.disabled = false;
+        });
+      return;
+    }
+    applyMode(n);
+  }
+
+  function applyMode(n) {
+    mode = n;
+    answers = (n === 1000) ? pool1000 : pool100;
+    mode100Btn.classList.toggle('active', n === 100);
+    mode1000Btn.classList.toggle('active', n === 1000);
+    mode100Btn.disabled = false;
+    mode1000Btn.disabled = false;
+    choiceNote.textContent = (n === 1000)
+      ? '1000 条：歌词 944 条 + 雨生亲笔文字 56 条'
+      : '100 条经典歌词';
+    resetFlow();
+  }
+
+  mode100Btn.addEventListener('click', function () { setMode(100); });
+  mode1000Btn.addEventListener('click', function () { setMode(1000); });
+
   fetch('answers.json')
     .then(function (r) { return r.json(); })
-    .then(function (data) { answers = data; })
+    .then(function (data) { pool100 = data; answers = data; })
     .catch(function () {
       diceStatus.textContent = '答案库没加载出来，刷新一下页面再试。';
     });
@@ -53,6 +104,10 @@
     if (!q) {
       questionHint.hidden = false;
       questionEl.focus();
+      return;
+    }
+    if (!answers || !answers.length) {
+      diceStatus.textContent = '答案库没加载出来，刷新一下页面再试。';
       return;
     }
     questionHint.hidden = true;
@@ -76,11 +131,11 @@
     showFace(randInt(1, 6));
     diceStatus.textContent = '停！看看是第几号答案……';
 
-    // 数字 1-100 快速闪动后定格
+    // 数字 1-mode 快速闪动后定格
     var ticks = 0;
     numberLine.hidden = false;
     numberTimer = setInterval(function () {
-      answerNumber.textContent = randInt(1, 100);
+      answerNumber.textContent = randInt(1, mode);
       ticks++;
       if (ticks > 12) {
         clearInterval(numberTimer);
@@ -98,9 +153,10 @@
     }
     var n = parseInt(answerNumber.textContent, 10);
     var item = answers[(n - 1) % answers.length];
+    var src = item.source || ('《' + item.song + '》/《' + item.album + '》');
     askedQuestion.textContent = questionEl.value.trim();
     answerText.textContent = item.text;
-    answerSource.textContent = '——《' + item.song + '》/《' + item.album + '》 · 第 ' + n + ' 号答案';
+    answerSource.textContent = '——' + src + ' · 第 ' + n + ' 号答案';
     answerSection.hidden = false;
     diceStatus.textContent = '宝哥已经回答了。';
     answerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });

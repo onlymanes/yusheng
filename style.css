@@ -96,6 +96,20 @@ main { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; }
 .btn.choice.active { background: var(--accent-soft); color: #1d1208; font-weight: 600; }
 .choice-note { color: var(--ink-dim); font-size: 13px; margin: 12px 0 0; }
 
+.lang-btn {
+  margin-left: auto;
+  padding: 6px 14px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--accent-soft);
+  background: transparent;
+  color: var(--accent);
+  flex: none;
+}
+.lang-btn:hover { border-color: var(--accent); }
+
 .ask { padding: 28px 0 8px; }
 .ask label { display: block; margin-bottom: 8px; color: var(--ink-dim); font-size: 14px; }
 .ask textarea {

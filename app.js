@@ -40,7 +40,8 @@
       footer1: '这里是宝友的答案之书：写下你的问题，掷一枚骰子，听宝哥用张雨生自己的话作答。',
       footer2: '答案库两种选择：100 条经典歌词，或 1000 条（歌词 944 条 + 雨生亲笔文字 56 条）',
       footer3Text: '雨生亲笔文字已收入 1000 答案版',
-      footer4: '整部作品由宝友 Ellen 提议，宝友群集思广益，Muse AI 生成。'
+      footer4: '整部作品由宝友 Ellen 提议，宝友群集思广益，Muse AI 生成。',
+      footer5: '头像：宝友「哈哈」手绘作品，Muse AI 涂色。'
     },
     tw: {
       docTitle: '張雨生答案之書 — 寶友問，寶哥答',
@@ -70,7 +71,8 @@
       footer1: '這裡是寶友的答案之書：寫下你的問題，擲一枚骰子，聽寶哥用張雨生自己的話作答。',
       footer2: '答案庫兩種選擇：100 條經典歌詞，或 1000 條（歌詞 944 條 + 雨生親筆文字 56 條）',
       footer3Text: '雨生親筆文字已收入 1000 答案版',
-      footer4: '整部作品由寶友 Ellen 提議，寶友群集思廣益，Muse AI 生成。'
+      footer4: '整部作品由寶友 Ellen 提議，寶友群集思廣益，Muse AI 生成。',
+      footer5: '頭像：寶友「哈哈」手繪作品，Muse AI 塗色。'
     }
   };
 
@@ -157,6 +159,7 @@
     $('footer2').textContent = s.footer2;
     $('footer3Text').textContent = s.footer3Text;
     $('footer4').textContent = s.footer4;
+    $('footer5').textContent = s.footer5;
     langBtn.textContent = lang === 'cn' ? '繁體' : '简体';
     if (diceArea.hidden) diceStatus.textContent = s.diceRolling;
     updateChoiceNote();

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张雨生答案之书</title>
+<meta name="description" content="张雨生答案之书：写下你的问题，掷一枚骰子，听宝哥用他自己的歌词回答你。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <img class="logo" src="avatar.webp" alt="张雨生卡通头像">
+  <div class="site-title">
+    <h1>张雨生答案之书</h1>
+    <p class="subtitle">写下你的问题，掷骰子，听宝哥回答</p>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <img class="hero-avatar" src="avatar.webp" alt="张雨生卡通头像">
+    <p class="hero-line">“倘若源自心灵，不过诚实而已。”</p>
+    <p class="hero-note">——宝哥</p>
+  </section>
+
+  <section class="ask" id="askSection">
+    <label for="question">你的问题</label>
+    <textarea id="question" rows="2" maxlength="200" placeholder="宝友，你想问什么？比如：我该怎么办，喜欢他，却不敢说"></textarea>
+    <p class="hint" id="questionHint" hidden>先写下你的问题，再掷骰子。</p>
+    <button id="rollBtn" class="btn primary">掷骰子</button>
+  </section>
+
+  <section class="dice-area" id="diceArea" hidden>
+    <div class="die-wrap">
+      <div class="die" id="die" aria-label="六面骰子">
+        <span class="pip" data-cell="0"></span><span class="pip" data-cell="1"></span><span class="pip" data-cell="2"></span>
+        <span class="pip" data-cell="3"></span><span class="pip" data-cell="4"></span><span class="pip" data-cell="5"></span>
+        <span class="pip" data-cell="6"></span><span class="pip" data-cell="7"></span><span class="pip" data-cell="8"></span>
+      </div>
+    </div>
+    <p class="dice-status" id="diceStatus">骰子在转……想好了就点停。</p>
+    <button id="stopBtn" class="btn primary">停</button>
+    <p class="number-line" id="numberLine" hidden>第 <span id="answerNumber">–</span> 号</p>
+  </section>
+
+  <section class="answer" id="answerSection" hidden>
+    <img class="answer-avatar" src="avatar.webp" alt="宝哥">
+    <div class="qa">
+      <p class="q"><span class="who">宝友问：</span><span id="askedQuestion"></span></p>
+      <p class="a"><span class="who">宝哥答：</span><span id="answerText"></span></p>
+      <p class="source" id="answerSource"></p>
+    </div>
+    <button id="againBtn" class="btn ghost">再问一次</button>
+  </section>
+</main>
+
+<footer>
+  <p>V0 演示版 · 答案出自张雨生本人演唱作品的歌词（100 条）</p>
+  <p>宝友提供的电子资料正在整理中，V1 起陆续加入 · <a href="https://onlymanes.ai/">onlymanes.ai</a></p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

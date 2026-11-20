@@ -89,6 +89,13 @@ main { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; }
 }
 .hero-note { position: relative; margin: 4px 0 0; color: var(--ink-dim); font-size: 14px; }
 
+.choice { padding: 24px 0 4px; text-align: center; }
+.choice-label { color: var(--ink-dim); font-size: 14px; margin: 0 0 12px; }
+.choice-btns { display: flex; gap: 12px; justify-content: center; }
+.btn.choice { margin: 0; padding: 10px 28px; letter-spacing: 2px; font-size: 16px; background: transparent; color: var(--accent); }
+.btn.choice.active { background: var(--accent-soft); color: #1d1208; font-weight: 600; }
+.choice-note { color: var(--ink-dim); font-size: 13px; margin: 12px 0 0; }
+
 .ask { padding: 28px 0 8px; }
 .ask label { display: block; margin-bottom: 8px; color: var(--ink-dim); font-size: 14px; }
 .ask textarea {

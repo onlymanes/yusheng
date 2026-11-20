@@ -1,0 +1,197 @@
+/* 张雨生答案之书 V0 · 配色取自《口是心非》封面：深底 + 暖棕 / 灰橘 */
+:root {
+  --bg: #17100a;
+  --bg-soft: #241a12;
+  --bg-card: #2b1f14;
+  --ink: #f2e8d8;
+  --ink-dim: #c9b8a0;
+  --accent: #d9a05b;
+  --accent-soft: #c98a4b;
+  --line: #4a3826;
+  --die-bg: #f2e8d8;
+  --die-pip: #241a12;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 8px;
+}
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-soft);
+  background: var(--bg-soft);
+  flex: none;
+}
+.site-title h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 2px;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+}
+.subtitle {
+  margin: 2px 0 0;
+  color: var(--ink-dim);
+  font-size: 14px;
+}
+
+main { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; }
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 36px 16px 28px;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(217, 160, 91, 0.28), transparent 55%),
+    radial-gradient(circle at 78% 12%, rgba(201, 138, 75, 0.14), transparent 40%);
+  pointer-events: none;
+}
+.hero-avatar {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-soft);
+  background: var(--bg-soft);
+}
+.hero-line {
+  position: relative;
+  margin: 20px 0 0;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.hero-note { position: relative; margin: 4px 0 0; color: var(--ink-dim); font-size: 14px; }
+
+.ask { padding: 28px 0 8px; }
+.ask label { display: block; margin-bottom: 8px; color: var(--ink-dim); font-size: 14px; }
+.ask textarea {
+  width: 100%;
+  background: var(--bg-soft);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 16px;
+  line-height: 1.6;
+  resize: vertical;
+}
+.ask textarea:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent-soft); }
+.hint { color: #e0a35c; font-size: 14px; margin: 8px 0 0; }
+.hint[hidden] { display: none; }
+
+.btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 44px;
+  font-size: 17px;
+  letter-spacing: 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--accent-soft);
+}
+.btn.primary { background: var(--accent-soft); color: #1d1208; font-weight: 600; }
+.btn.primary:hover { background: var(--accent); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+
+.dice-area { text-align: center; padding: 28px 0 8px; }
+.die-wrap { display: flex; justify-content: center; }
+.die {
+  width: 96px;
+  height: 96px;
+  background: var(--die-bg);
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+.die.rolling { animation: wobble 0.28s ease-in-out infinite alternate; }
+@keyframes wobble {
+  from { transform: rotate(-6deg) translateY(0); }
+  to { transform: rotate(6deg) translateY(-6px); }
+}
+.pip {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--die-pip);
+  place-self: center;
+  visibility: hidden;
+}
+.pip.on { visibility: visible; }
+.dice-status { color: var(--ink-dim); margin: 16px 0 0; }
+.number-line { font-size: 20px; margin: 14px 0 0; font-family: "Songti SC", "Noto Serif SC", serif; }
+.number-line span { color: var(--accent); font-size: 28px; }
+
+.answer {
+  margin-top: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.answer-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-soft);
+  background: var(--bg-soft);
+}
+.qa { text-align: left; margin-top: 12px; }
+.qa .who { color: var(--accent); font-weight: 600; }
+.qa .q { color: var(--ink-dim); margin: 0 0 12px; }
+.qa .a {
+  margin: 0;
+  font-family: "Songti SC", "Noto Serif SC", serif;
+  font-size: 22px;
+  line-height: 1.8;
+}
+.source { color: var(--ink-dim); font-size: 14px; margin: 14px 0 0; text-align: right; }
+
+footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px 32px;
+  color: var(--ink-dim);
+  font-size: 13px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+footer p { margin: 10px 0 0; }
+
+@media (max-width: 480px) {
+  .site-title h1 { font-size: 22px; }
+  .hero-avatar { width: 150px; height: 150px; }
+  .qa .a { font-size: 20px; }
+}

@@ -1,5 +1,5 @@
 // 张雨生答案之书
-// 流程：选答案库（100 / 548）-> 输入问题 -> 掷骰子（六面骰转动）-> 点停 -> 出对应号 -> 取对应答案
+// 流程：选答案库（100 / 1000）-> 输入问题 -> 掷骰子（六面骰转动）-> 点停 -> 出对应号 -> 取对应答案
 // 界面与答案库均可切换简体 / 繁体（繁体答案库由简体库经 OpenCC s2t 预生成）
 (function () {
   var FACES = {
@@ -20,9 +20,9 @@
       heroNote: '——宝哥',
       choiceLabel: '先选答案库：',
       choiceNote100: '100条经典歌词',
-      choiceNote548: '548条：歌词492条 + 雨生亲笔文字56条',
-      choiceNoteLoading: '548答案库加载中……',
-      choiceNoteFail: '548答案库没加载出来，刷新一下页面再试。',
+      choiceNote1000: '1000条：歌词944条 + 雨生亲笔文字56条',
+      choiceNoteLoading: '1000答案库加载中……',
+      choiceNoteFail: '1000答案库没加载出来，刷新一下页面再试。',
       askLabel: '你的问题',
       questionPlaceholder: '宝友，你想问什么？比如：我该怎么办，喜欢他，却不敢说',
       questionHint: '先写下你的问题，再掷骰子。',
@@ -38,8 +38,8 @@
       againBtn: '再问一次',
       answerSuffix: '号答案',
       footer1: '这里是宝友的答案之书：写下你的问题，掷一枚骰子，听宝哥用张雨生自己的话作答。',
-      footer2: '答案库两种选择：100条经典歌词，或548条（歌词492条 + 雨生亲笔文字56条）',
-      footer3Text: '雨生亲笔文字已收入548答案版',
+      footer2: '答案库两种选择：100条经典歌词，或1000条（歌词944条 + 雨生亲笔文字56条）',
+      footer3Text: '雨生亲笔文字已收入1000答案版',
       footer4: '整部作品由宝友Ellen提议，宝友群集思广益，Muse AI生成。',
       footer5: '头像：宝友「哈哈」手绘作品。'
     },
@@ -51,9 +51,9 @@
       heroNote: '——寶哥',
       choiceLabel: '先選答案庫：',
       choiceNote100: '100條經典歌詞',
-      choiceNote548: '548條：歌詞492條 + 雨生親筆文字56條',
-      choiceNoteLoading: '548答案庫加載中……',
-      choiceNoteFail: '548答案庫沒加載出來，刷新一下頁面再試。',
+      choiceNote1000: '1000條：歌詞944條 + 雨生親筆文字56條',
+      choiceNoteLoading: '1000答案庫加載中……',
+      choiceNoteFail: '1000答案庫沒加載出來，刷新一下頁面再試。',
       askLabel: '你的問題',
       questionPlaceholder: '寶友，你想問什麼？比如：我該怎麼辦，喜歡他，卻不敢說',
       questionHint: '先寫下你的問題，再擲骰子。',
@@ -69,8 +69,8 @@
       againBtn: '再問一次',
       answerSuffix: '號答案',
       footer1: '這裡是寶友的答案之書：寫下你的問題，擲一枚骰子，聽寶哥用張雨生自己的話作答。',
-      footer2: '答案庫兩種選擇：100條經典歌詞，或548條（歌詞492條 + 雨生親筆文字56條）',
-      footer3Text: '雨生親筆文字已收入548答案版',
+      footer2: '答案庫兩種選擇：100條經典歌詞，或1000條（歌詞944條 + 雨生親筆文字56條）',
+      footer3Text: '雨生親筆文字已收入1000答案版',
       footer4: '整部作品由寶友Ellen提議，寶友群集思廣益，Muse AI生成。',
       footer5: '頭像：寶友「哈哈」手繪作品。'
     }
@@ -93,7 +93,7 @@
   var answerSource = $('answerSource');
   var againBtn = $('againBtn');
   var mode100Btn = $('mode100Btn');
-  var mode548Btn = $('mode548Btn');
+  var mode1000Btn = $('mode1000Btn');
   var choiceNote = $('choiceNote');
   var langBtn = $('langBtn');
 
@@ -125,7 +125,7 @@
 
   function poolFile(m, l) {
     if (m === 100) return l === 'tw' ? 'answers-tw.json' : 'answers.json';
-    return l === 'tw' ? 'answers-548-tw.json' : 'answers-548.json';
+    return l === 'tw' ? 'answers-1000-tw.json' : 'answers-1000.json';
   }
 
   function loadPool(m, l, cb) {
@@ -166,7 +166,7 @@
   }
 
   function updateChoiceNote() {
-    choiceNote.textContent = mode === 548 ? S().choiceNote548 : S().choiceNote100;
+    choiceNote.textContent = mode === 1000 ? S().choiceNote1000 : S().choiceNote100;
   }
 
   function resetFlow() {
@@ -186,14 +186,14 @@
 
   function setMode(n) {
     if (n === mode && answers) return;
-    if (n === 548 && !pools['548-' + lang]) {
+    if (n === 1000 && !pools['1000-' + lang]) {
       mode100Btn.disabled = true;
-      mode548Btn.disabled = true;
+      mode1000Btn.disabled = true;
       choiceNote.textContent = S().choiceNoteLoading;
     }
     loadPool(n, lang, function (data) {
       mode100Btn.disabled = false;
-      mode548Btn.disabled = false;
+      mode1000Btn.disabled = false;
       if (!data) {
         choiceNote.textContent = S().choiceNoteFail;
         return;
@@ -201,7 +201,7 @@
       mode = n;
       answers = data;
       mode100Btn.classList.toggle('active', n === 100);
-      mode548Btn.classList.toggle('active', n === 548);
+      mode1000Btn.classList.toggle('active', n === 1000);
       updateChoiceNote();
       resetFlow();
     });
@@ -230,7 +230,7 @@
   }
 
   mode100Btn.addEventListener('click', function () { setMode(100); });
-  mode548Btn.addEventListener('click', function () { setMode(548); });
+  mode1000Btn.addEventListener('click', function () { setMode(1000); });
   langBtn.addEventListener('click', function () {
     setLang(lang === 'cn' ? 'tw' : 'cn');
   });

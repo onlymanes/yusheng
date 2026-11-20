@@ -39,21 +39,22 @@
 <header class="site-header">
   <img class="logo" src="avatar.webp" alt="张雨生卡通头像">
   <div class="site-title">
-    <h1>张雨生答案之书</h1>
-    <p class="subtitle">写下你的问题，掷骰子，听宝哥回答</p>
+    <h1 id="siteTitle">张雨生答案之书</h1>
+    <p class="subtitle" id="siteSubtitle">写下你的问题，掷骰子，听宝哥回答</p>
   </div>
+  <button type="button" id="langBtn" class="lang-btn" title="切换繁体 / 简体">繁體</button>
 </header>
 
 <main>
   <section class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <img class="hero-avatar" src="avatar.webp" alt="张雨生卡通头像">
-    <p class="hero-line">“倘若源自心灵，不过诚实而已。”</p>
-    <p class="hero-note">——宝哥</p>
+    <p class="hero-line" id="heroLine">“倘若源自心灵，不过诚实而已。”</p>
+    <p class="hero-note" id="heroNote">——宝哥</p>
   </section>
 
   <section class="choice" id="choiceSection">
-    <p class="choice-label">先选答案库：</p>
+    <p class="choice-label" id="choiceLabel">先选答案库：</p>
     <div class="choice-btns">
       <button type="button" id="mode100Btn" class="btn choice active">100 个答案</button>
       <button type="button" id="mode1000Btn" class="btn choice">1000 个答案</button>
@@ -62,7 +63,7 @@
   </section>
 
   <section class="ask" id="askSection">
-    <label for="question">你的问题</label>
+    <label for="question" id="askLabel">你的问题</label>
     <textarea id="question" rows="2" maxlength="200" placeholder="宝友，你想问什么？比如：我该怎么办，喜欢他，却不敢说"></textarea>
     <p class="hint" id="questionHint" hidden>先写下你的问题，再掷骰子。</p>
     <button id="rollBtn" class="btn primary">掷骰子</button>
@@ -78,14 +79,14 @@
     </div>
     <p class="dice-status" id="diceStatus">骰子在转……想好了就点停。</p>
     <button id="stopBtn" class="btn primary">停</button>
-    <p class="number-line" id="numberLine" hidden>第 <span id="answerNumber">–</span> 号</p>
+    <p class="number-line" id="numberLine" hidden>第 <span id="answerNumber">–</span> <span id="numberUnit">号</span></p>
   </section>
 
   <section class="answer" id="answerSection" hidden>
     <img class="answer-avatar" src="avatar.webp" alt="宝哥">
     <div class="qa">
-      <p class="q"><span class="who">宝友问：</span><span id="askedQuestion"></span></p>
-      <p class="a"><span class="who">宝哥答：</span><span id="answerText"></span></p>
+      <p class="q"><span class="who" id="whoQ">宝友问：</span><span id="askedQuestion"></span></p>
+      <p class="a"><span class="who" id="whoA">宝哥答：</span><span id="answerText"></span></p>
       <p class="source" id="answerSource"></p>
     </div>
     <button id="againBtn" class="btn ghost">再问一次</button>
@@ -93,9 +94,9 @@
 </main>
 
 <footer>
-  <p>这里是宝友的答案之书：写下你的问题，掷一枚骰子，听宝哥用张雨生自己的话作答。</p>
-  <p>答案库两种选择：100 条经典歌词，或 1000 条（歌词 944 条 + 雨生亲笔文字 56 条）</p>
-  <p>雨生亲笔文字已收入 1000 答案版 · <a href="https://onlymanes.ai/">onlymanes.ai</a></p>
+  <p id="footer1">这里是宝友的答案之书：写下你的问题，掷一枚骰子，听宝哥用张雨生自己的话作答。</p>
+  <p id="footer2">答案库两种选择：100 条经典歌词，或 1000 条（歌词 944 条 + 雨生亲笔文字 56 条）</p>
+  <p><span id="footer3Text">雨生亲笔文字已收入 1000 答案版</span> · <a href="https://onlymanes.ai/">onlymanes.ai</a></p>
 </footer>
 
 <script src="app.js"></script>
